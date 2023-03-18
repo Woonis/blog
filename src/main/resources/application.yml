@@ -24,6 +24,20 @@ spring:
 ##      mode: always
 ##      schema-locations: classpath:db/migration/V1__init.sql
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+
 ---
 spring.config.activate.on-profile: test
 
