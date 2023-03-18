@@ -3,6 +3,7 @@ package com.woonis.blogapi.client.kakao;
 import com.google.common.collect.Maps;
 import com.woonis.blogapi.client.kakao.dto.request.KaKaoSearchRequest;
 import com.woonis.blogapi.client.kakao.dto.response.KaKaoBlogResponse;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -29,6 +30,10 @@ public class KaKaoClient {
     }
 
     public KaKaoBlogResponse searchBlog(KaKaoSearchRequest searchDto) {
+        if (StringUtils.isBlank(searchDto.getQuery())) {
+            throw new IllegalArgumentException("keyword, url 값은 필수 입니다.");
+        }
+
         return restTemplate.exchange(
                 buildUri(searchDto),
                 HttpMethod.GET,

@@ -22,7 +22,7 @@ public class Pagination {
         this.currentPage = currentPage > 0 ? currentPage : 1;
         this.countPerPage = countPerPage > 0 ? countPerPage : 10;
 
-        this.totalPageCount = Objects.nonNull(kaKaoMeta) ? kaKaoMeta.pageableCount() : 0;
+        this.totalPageCount = Objects.nonNull(kaKaoMeta) ? kaKaoMeta.pageableCount(): 0;
         this.totalItemCount = Objects.nonNull(kaKaoMeta) ? kaKaoMeta.totalCount() : 0;
         this.hasNext = Objects.nonNull(kaKaoMeta) && !kaKaoMeta.isEnd();
     }
