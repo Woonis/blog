@@ -7,6 +7,8 @@ import com.woonis.blogapi.converter.KaKaoBlogDtoConverter;
 import com.woonis.blogapi.service.common.Pagination;
 import com.woonis.blogapi.service.kakao.dto.KaKaoBlogPageDto;
 import com.woonis.blogapi.service.kakao.dto.KaKaoBlogSearchDto;
+import com.woonis.blogapi.service.kakao.dto.KaKaoSearchSort;
+import io.micrometer.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
