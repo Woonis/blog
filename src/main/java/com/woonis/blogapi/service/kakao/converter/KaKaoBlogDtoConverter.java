@@ -1,4 +1,4 @@
-package com.woonis.blogapi.converter;
+package com.woonis.blogapi.service.kakao.converter;
 
 import com.google.common.collect.Lists;
 import com.woonis.blogapi.client.kakao.dto.response.KaKaoBlogDetail;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class KaKaoBlogDtoConverter {
     public static List<KaKaoBlogDetailDto> convert(List<KaKaoBlogDetail> target) {
-        if(CollectionUtils.isEmpty(target)) {
+        if (CollectionUtils.isEmpty(target)) {
             return Lists.newArrayList();
         }
 

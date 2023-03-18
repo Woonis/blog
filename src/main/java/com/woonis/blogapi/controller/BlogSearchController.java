@@ -1,5 +1,6 @@
 package com.woonis.blogapi.controller;
 
+import com.woonis.blogapi.controller.common.ResultResponse;
 import com.woonis.blogapi.service.search.BlogSearchService;
 import com.woonis.blogapi.service.search.dto.BlogSearchDto;
 import com.woonis.blogapi.service.search.dto.BlogSearchPageDto;
@@ -21,12 +22,12 @@ public class BlogSearchController {
         this.service = service;
     }
 
-    @GetMapping("/api/v1/search/blog")
-    public BlogSearchPageDto searchBlog(
+    @GetMapping("/api/v1/blog")
+    public ResultResponse<BlogSearchPageDto> searchBlog(
             @Valid BlogSearchDto request,
             @Valid @Max(value = 50) @RequestParam(required = false, defaultValue = "1") int page,
             @Valid @Max(value = 50) @RequestParam(required = false, defaultValue = "10") int countPerPage
     ) {
-        return service.search(request, page, countPerPage);
+        return ResultResponse.ok(service.search(request, page, countPerPage));
     }
 }

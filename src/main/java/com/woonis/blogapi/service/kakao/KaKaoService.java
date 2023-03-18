@@ -2,9 +2,8 @@ package com.woonis.blogapi.service.kakao;
 
 import com.woonis.blogapi.client.kakao.KaKaoClient;
 import com.woonis.blogapi.client.kakao.dto.request.KaKaoSearchRequest;
-import com.woonis.blogapi.client.kakao.dto.response.KaKaoBlogResponse;
-import com.woonis.blogapi.converter.KaKaoBlogDtoConverter;
 import com.woonis.blogapi.service.common.Pagination;
+import com.woonis.blogapi.service.kakao.converter.KaKaoBlogDtoConverter;
 import com.woonis.blogapi.service.kakao.dto.KaKaoBlogPageDto;
 import com.woonis.blogapi.service.search.dto.BlogSearchDto;
 import com.woonis.blogapi.service.search.dto.BlogSearchPageDto;
@@ -32,7 +31,7 @@ public class KaKaoService implements ExternalBlogSearchService {
 
     @Override
     public BlogSearchPageDto search(BlogSearchDto request, int currentPage, int countPerPage) {
-        KaKaoBlogResponse response = client.searchBlog(
+        var response = client.searchBlog(
                 KaKaoSearchRequest.builder()
                         .keyword(request.keyword())
                         .url(request.url())

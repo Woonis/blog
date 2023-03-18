@@ -3,11 +3,15 @@ spring:
     active: local
   jpa:
     show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
   flyway:
-    enabled: false
+    enabled: true
     encoding: utf-8
     baseline-on-migrate: true
     baseline-version: 0
+    locations: classpath:db/migration
   h2:
     console:
       enabled: true
@@ -19,10 +23,6 @@ spring:
     username: sa
     password:
     platform: h2
-#  sql:
-#    init:
-##      mode: always
-##      schema-locations: classpath:db/migration/V1__init.sql
 
 management:
   endpoints:
