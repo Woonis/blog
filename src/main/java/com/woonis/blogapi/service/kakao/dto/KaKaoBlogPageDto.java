@@ -1,16 +1,20 @@
 package com.woonis.blogapi.service.kakao.dto;
 
 import com.woonis.blogapi.service.common.Pagination;
+import com.woonis.blogapi.service.search.dto.BlogSearchPageDto;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.util.List;
 
-public record KaKaoBlogPageDto(
-        List<KaKaoBlogDetailDto> documents,
-        Pagination pagination
-) {
+@Getter
+public class KaKaoBlogPageDto extends BlogSearchPageDto {
+    private final List<KaKaoBlogDetailDto> documents;
 
     @Builder
-    public KaKaoBlogPageDto{
+    public KaKaoBlogPageDto(List<KaKaoBlogDetailDto> documents,
+                            Pagination pagination) {
+        super(pagination);
+        this.documents = documents;
     }
 }

@@ -1,8 +1,8 @@
 package com.woonis.blogapi.controller;
 
-import com.woonis.blogapi.service.kakao.KaKaoService;
-import com.woonis.blogapi.service.kakao.dto.KaKaoBlogPageDto;
-import com.woonis.blogapi.service.kakao.dto.KaKaoBlogSearchDto;
+import com.woonis.blogapi.service.search.BlogSearchService;
+import com.woonis.blogapi.service.search.dto.BlogSearchDto;
+import com.woonis.blogapi.service.search.dto.BlogSearchPageDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,17 +13,17 @@ import javax.validation.constraints.Max;
 
 @Slf4j
 @RestController
-public class KaKaoController {
+public class BlogSearchController {
 
-    private final KaKaoService service;
+    private final BlogSearchService service;
 
-    public KaKaoController(KaKaoService service) {
+    public BlogSearchController(BlogSearchService service) {
         this.service = service;
     }
 
-    @GetMapping("/api/v1/kakao/blog")
-    public KaKaoBlogPageDto fetchKaKaoBlog(
-            @Valid KaKaoBlogSearchDto request,
+    @GetMapping("/api/v1/search/blog")
+    public BlogSearchPageDto searchBlog(
+            @Valid BlogSearchDto request,
             @Valid @Max(value = 50) @RequestParam(required = false, defaultValue = "1") int page,
             @Valid @Max(value = 50) @RequestParam(required = false, defaultValue = "10") int countPerPage
     ) {

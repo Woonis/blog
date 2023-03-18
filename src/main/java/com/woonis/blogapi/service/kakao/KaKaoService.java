@@ -6,9 +6,10 @@ import com.woonis.blogapi.client.kakao.dto.response.KaKaoBlogResponse;
 import com.woonis.blogapi.converter.KaKaoBlogDtoConverter;
 import com.woonis.blogapi.service.common.Pagination;
 import com.woonis.blogapi.service.kakao.dto.KaKaoBlogPageDto;
-import com.woonis.blogapi.service.kakao.dto.KaKaoBlogSearchDto;
-import com.woonis.blogapi.service.kakao.dto.KaKaoSearchSort;
-import io.micrometer.common.util.StringUtils;
+import com.woonis.blogapi.service.search.dto.BlogSearchDto;
+import com.woonis.blogapi.service.search.dto.BlogSearchPageDto;
+import com.woonis.blogapi.service.search.dto.BlogSearchType;
+import com.woonis.blogapi.service.search.external.ExternalBlogSearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.Objects;
 
 @Slf4j
 @Service
-public class KaKaoService {
+public class KaKaoService implements ExternalBlogSearchService {
 
     private final KaKaoClient client;
 
@@ -24,13 +25,19 @@ public class KaKaoService {
         this.client = client;
     }
 
-    public KaKaoBlogPageDto search(KaKaoBlogSearchDto request, int page, int countPerPage) {
+    @Override
+    public boolean isTarget(BlogSearchType type) {
+        return BlogSearchType.KAKAO == type;
+    }
+
+    @Override
+    public BlogSearchPageDto search(BlogSearchDto request, int currentPage, int countPerPage) {
         KaKaoBlogResponse response = client.searchBlog(
                 KaKaoSearchRequest.builder()
                         .keyword(request.keyword())
                         .url(request.url())
                         .sort(Objects.nonNull(request.sort()) ? request.sort().name() : "")
-                        .page(page)
+                        .page(currentPage)
                         .size(countPerPage)
                         .build()
         );
@@ -39,7 +46,7 @@ public class KaKaoService {
                 .documents(KaKaoBlogDtoConverter.convert(response.documents()))
                 .pagination(
                         Pagination.builder()
-                                .currentPage(page)
+                                .currentPage(currentPage)
                                 .countPerPage(countPerPage)
                                 .kaKaoMeta(response.meta())
                                 .build()
