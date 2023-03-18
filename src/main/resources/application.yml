@@ -38,6 +38,12 @@ management:
     circuitbreakers:
       enabled: true
 
+
+api:
+  kakao:
+    search-url: http://dapi.kakao.com/v2/search/blog
+    key:  36eb4066c00c569786bff3d1f9b91ba2
+
 ---
 spring.config.activate.on-profile: test
 
