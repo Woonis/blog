@@ -1,3 +1,0 @@
-rootProject.name = 'blog'
-
-include 'apps:blog-api', 'libs:adapter-http', 'libs:application'

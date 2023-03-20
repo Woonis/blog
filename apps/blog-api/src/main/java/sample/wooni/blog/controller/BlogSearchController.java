@@ -1,5 +1,7 @@
 package sample.wooni.blog.controller;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
 import sample.wooni.blog.controller.common.ResultResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import sample.wooni.blog.service.search.BlogSearchService;
 import sample.wooni.blog.service.search.dto.BlogSearchDto;
 import sample.wooni.blog.service.search.dto.BlogSearchPageDto;
-
-import javax.validation.Valid;
-import javax.validation.constraints.Max;
 
 @Slf4j
 @RestController

@@ -41,13 +41,16 @@ public class KaKaoService implements ExternalBlogSearchService {
                         .build()
         );
 
+        var meta = response.meta();
         return KaKaoBlogPageDto.builder()
                 .documents(KaKaoBlogDtoConverter.convert(response.documents()))
                 .pagination(
                         Pagination.builder()
                                 .currentPage(currentPage)
                                 .countPerPage(countPerPage)
-                                .kaKaoMeta(response.meta())
+                                .totalItemCount(Objects.nonNull(meta) ? meta.totalCount() : 0)
+                                .totalPageCount(Objects.nonNull(meta) ? meta.pageableCount() : 0)
+                                .hasNext(Objects.nonNull(meta) && !(meta.isEnd()))
                                 .build()
                 )
                 .build();

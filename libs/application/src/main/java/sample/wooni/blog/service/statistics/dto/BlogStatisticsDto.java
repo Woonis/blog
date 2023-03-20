@@ -7,6 +7,7 @@ import java.time.ZonedDateTime;
 
 public record BlogStatisticsDto(
         String keyword,
+        String type,
         int count,
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         ZonedDateTime createdAt,

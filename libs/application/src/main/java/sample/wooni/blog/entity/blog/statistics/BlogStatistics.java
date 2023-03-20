@@ -1,9 +1,10 @@
-package sample.wooni.blog.service.entity;
+package sample.wooni.blog.entity.blog.statistics;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import sample.wooni.blog.entity.BaseTimeEntity;
 
 @Getter
 @Entity

@@ -1,4 +1,4 @@
-package sample.wooni.blog.service.entity;
+package sample.wooni.blog.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

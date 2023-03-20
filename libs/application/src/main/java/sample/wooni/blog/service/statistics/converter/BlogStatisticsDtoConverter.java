@@ -3,7 +3,7 @@ package sample.wooni.blog.service.statistics.converter;
 import com.google.common.collect.Lists;
 import lombok.experimental.UtilityClass;
 import org.springframework.util.CollectionUtils;
-import sample.wooni.blog.service.entity.BlogStatistics;
+import sample.wooni.blog.entity.blog.statistics.BlogStatistics;
 import sample.wooni.blog.service.statistics.dto.BlogStatisticsDto;
 
 import java.util.List;
@@ -26,6 +26,7 @@ public class BlogStatisticsDtoConverter {
     private BlogStatisticsDto convertDto(BlogStatistics target) {
         return BlogStatisticsDto.builder()
                 .keyword(target.getKeyword())
+                .type(target.getType())
                 .count(target.getCount())
                 .createdAt(target.getCreatedAt())
                 .modifiedAt(target.getModifiedAt())
