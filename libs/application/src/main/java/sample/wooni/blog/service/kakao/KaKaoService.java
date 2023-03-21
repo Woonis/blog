@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import sample.wooni.blog.service.common.Pagination;
 import sample.wooni.blog.service.kakao.converter.KaKaoBlogDtoConverter;
 import sample.wooni.blog.service.kakao.dto.KaKaoBlogPageDto;
+import sample.wooni.blog.service.kakao.dto.KaKaoSearchSort;
 import sample.wooni.blog.service.output.kakao.ExternalKaKaoBlogOutput;
 import sample.wooni.blog.service.output.kakao.dto.request.KaKaoSearchRequest;
 import sample.wooni.blog.service.search.dto.BlogSearchDto;
@@ -35,7 +36,7 @@ public class KaKaoService implements ExternalBlogSearchService {
                 KaKaoSearchRequest.builder()
                         .keyword(request.keyword())
                         .url(request.url())
-                        .sort(Objects.nonNull(request.sort()) ? request.sort().name() : "")
+                        .sort(Objects.nonNull(request.sort()) ? KaKaoSearchSort.findBy(request.sort()).name() : null)
                         .page(currentPage)
                         .size(countPerPage)
                         .build()

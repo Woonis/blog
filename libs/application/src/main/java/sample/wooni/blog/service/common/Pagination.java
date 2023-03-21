@@ -25,4 +25,16 @@ public class Pagination {
         this.totalItemCount = totalItemCount;
         this.hasNext = hasNext;
     }
+
+    @Builder
+    public Pagination(int totalItemCount,
+                      int currentPage,
+                      int countPerPage) {
+        this.currentPage = currentPage > 0 ? currentPage : 1;
+        this.countPerPage = countPerPage > 0 ? countPerPage : 10;
+
+        this.totalPageCount = totalItemCount > 0 ? totalItemCount / this.countPerPage : 0;
+        this.totalItemCount = totalItemCount;
+        this.hasNext = this.totalPageCount > currentPage;
+    }
 }

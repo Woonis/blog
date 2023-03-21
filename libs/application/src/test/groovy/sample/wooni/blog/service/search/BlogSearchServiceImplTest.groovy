@@ -8,6 +8,8 @@ import sample.wooni.blog.service.kakao.dto.KaKaoBlogPageDto
 import sample.wooni.blog.service.kakao.dto.KaKaoSearchSort
 import sample.wooni.blog.service.search.dto.BlogSearchDto
 import sample.wooni.blog.service.search.dto.BlogSearchType
+import sample.wooni.blog.service.statistics.BlogStatisticsService
+import sample.wooni.blog.service.statistics.dto.BlogStatisticsDto
 import spock.lang.Specification
 
 import java.time.ZonedDateTime
@@ -15,13 +17,17 @@ import java.time.ZonedDateTime
 class BlogSearchServiceImplTest extends Specification {
     private BlogSearchServiceImpl service
     private KaKaoService kaKaoService
+    private BlogStatisticsService statisticsService
 
     def "setup"() {
         kaKaoService = Mock(KaKaoService.class)
+        statisticsService = Mock(BlogStatisticsService.class)
+
         service = new BlogSearchServiceImpl(
                 Lists.newArrayList(
                         kaKaoService
-                )
+                ),
+                statisticsService
         )
     }
 
@@ -47,6 +53,7 @@ class BlogSearchServiceImplTest extends Specification {
                                 .build()
                 ))
         .build()
+        1 * statisticsService.save(_) >> BlogStatisticsDto.builder().build()
 
         when:
         KaKaoBlogPageDto response = service.search(request, 0, 10)
