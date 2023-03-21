@@ -36,7 +36,7 @@ configureByLabels("java") {
     apply(plugin = "org.gradle.java")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "io.freefair.lombok")
-//    apply(plugin = "com.coditory.integration-test")
+    apply(plugin = "groovy")
 
     configure<JavaPluginExtension> {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -62,9 +62,15 @@ configureByLabels("java") {
 
     dependencies {
         val implementation by configurations
+        val testImplementation by configurations
 
         implementation("com.google.guava:guava")
         implementation("org.apache.commons:commons-lang3")
+
+        // spock
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        testImplementation("org.spockframework:spock-core:${Versions.spock}")
+        testImplementation("org.spockframework:spock-spring:${Versions.spock}")
     }
 }
 

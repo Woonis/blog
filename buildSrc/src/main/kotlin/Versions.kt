@@ -10,4 +10,6 @@ object Versions {
     const val guava = "31.1-jre"
     const val apacheCommonsLang = "3.12.0"
     const val queryDsl = "5.0.0"
+
+    const val spock = "2.4-M1-groovy-4.0"
 }
