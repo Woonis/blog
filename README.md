@@ -8,7 +8,7 @@
 - Spock 기반 테스트 케이스
 
 # 빌드 결과물
-[blog-api-1.0-SNAPSHOT-boot.jar]https://github.com/Woonis/blog/blob/main/apps/blog-api/src/main/resources/jar/blog-api-1.0-SNAPSHOT-boot.jar
+[blog-api-1.0-SNAPSHOT-boot.jar](https://github.com/Woonis/blog/blob/main/apps/blog-api/src/main/resources/jar/blog-api-1.0-SNAPSHOT-boot.jar)
 
 # 프로젝트 구성
 ```
