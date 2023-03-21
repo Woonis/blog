@@ -2,6 +2,7 @@ package sample.wooni.blog.client.naver;
 
 import com.google.common.collect.Maps;
 import io.micrometer.common.util.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -18,6 +19,7 @@ import sample.wooni.blog.service.output.naver.dto.response.NaverBlogResponse;
 
 import java.util.Map;
 
+@Slf4j
 @Service
 public class NaverClient implements ExternalNaverBlogOutput {
     private final String searchUrl;
