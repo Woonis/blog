@@ -10,6 +10,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import sample.wooni.blog.client.naver.converter.NaverBlogToBlogConverter;
+import sample.wooni.blog.service.output.blog.response.BlogPageDto;
 import sample.wooni.blog.service.output.naver.ExternalNaverBlogOutput;
 import sample.wooni.blog.service.output.naver.dto.request.NaverSearchRequest;
 import sample.wooni.blog.service.output.naver.dto.response.NaverBlogResponse;
@@ -34,18 +36,20 @@ public class NaverClient implements ExternalNaverBlogOutput {
     }
 
     @Override
-    public NaverBlogResponse search(NaverSearchRequest request) {
+    public BlogPageDto search(NaverSearchRequest request) {
         if (StringUtils.isBlank(request.query())) {
             throw new IllegalArgumentException("keyword, url 값은 필수 입니다.");
         }
 
-        return restTemplate.exchange(
+        var response = restTemplate.exchange(
                 buildUri(request),
                 HttpMethod.GET,
                 new HttpEntity<>(buildHeaders()),
                 new ParameterizedTypeReference<NaverBlogResponse>() {
                 }
         ).getBody();
+
+        return NaverBlogToBlogConverter.convert(response);
     }
 
     private String buildUri(NaverSearchRequest searchDto) {

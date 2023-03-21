@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sample.wooni.blog.service.output.blog.response.BlogPageDto;
 import sample.wooni.blog.service.search.BlogSearchService;
 import sample.wooni.blog.service.search.dto.BlogSearchDto;
 import sample.wooni.blog.service.search.dto.BlogSearchPageDto;
@@ -22,7 +23,7 @@ public class BlogSearchController {
     }
 
     @GetMapping("/api/v1/blog")
-    public ResultResponse<BlogSearchPageDto> searchBlog(
+    public ResultResponse<BlogPageDto> searchBlog(
             @Valid BlogSearchDto request,
             @Valid @Max(value = 50) @RequestParam(required = false, defaultValue = "1") int page,
             @Valid @Max(value = 50) @RequestParam(required = false, defaultValue = "10") int countPerPage

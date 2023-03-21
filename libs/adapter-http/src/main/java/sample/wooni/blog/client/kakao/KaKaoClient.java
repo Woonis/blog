@@ -2,7 +2,6 @@ package sample.wooni.blog.client.kakao;
 
 import com.google.common.collect.Maps;
 import io.micrometer.common.util.StringUtils;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -11,6 +10,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import sample.wooni.blog.client.kakao.converter.KaKaoBlogToBlogConverter;
+import sample.wooni.blog.service.output.blog.response.BlogPageDto;
 import sample.wooni.blog.service.output.kakao.ExternalKaKaoBlogOutput;
 import sample.wooni.blog.service.output.kakao.dto.request.KaKaoSearchRequest;
 import sample.wooni.blog.service.output.kakao.dto.response.KaKaoBlogResponse;
@@ -32,18 +33,20 @@ public class KaKaoClient implements ExternalKaKaoBlogOutput {
     }
 
     @Override
-    public KaKaoBlogResponse searchBlog(KaKaoSearchRequest searchDto) {
+    public BlogPageDto searchBlog(KaKaoSearchRequest searchDto) {
         if (StringUtils.isBlank(searchDto.getQuery())) {
             throw new IllegalArgumentException("keyword, url 값은 필수 입니다.");
         }
 
-        return restTemplate.exchange(
+        var response = restTemplate.exchange(
                 buildUri(searchDto),
                 HttpMethod.GET,
                 new HttpEntity<>(buildHeaders()),
                 new ParameterizedTypeReference<KaKaoBlogResponse>() {
                 }
         ).getBody();
+
+        return KaKaoBlogToBlogConverter.convert(response, searchDto.getPage(), searchDto.getSize());
     }
 
     private String buildUri(KaKaoSearchRequest searchDto) {

@@ -2,6 +2,7 @@ package sample.wooni.blog.service.search;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import sample.wooni.blog.service.output.blog.response.BlogPageDto;
 import sample.wooni.blog.service.search.dto.BlogSearchDto;
 import sample.wooni.blog.service.search.dto.BlogSearchPageDto;
 import sample.wooni.blog.service.search.external.ExternalBlogSearchService;
@@ -24,7 +25,7 @@ public class BlogSearchServiceImpl implements BlogSearchService {
     }
 
     @Override
-    public BlogSearchPageDto search(BlogSearchDto request, int currentPage, int countPerPage) {
+    public BlogPageDto search(BlogSearchDto request, int currentPage, int countPerPage) {
         ExternalBlogSearchService service = services.stream()
                 .filter(it -> it.isTarget(request.type()))
                 .findAny()

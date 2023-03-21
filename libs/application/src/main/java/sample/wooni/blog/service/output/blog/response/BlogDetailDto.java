@@ -1,20 +1,19 @@
-package sample.wooni.blog.service.kakao.dto;
+package sample.wooni.blog.service.output.blog.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 
 import java.time.ZonedDateTime;
 
-public record KaKaoBlogDetailDto(
+public record BlogDetailDto(
         String title,
-        String contents,
+        String content,
         String url,
-       String blogName,
+        String name,
         String thumbnail,
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") ZonedDateTime createdAt
 ) {
-
     @Builder
-    public KaKaoBlogDetailDto {
+    public BlogDetailDto {
     }
 }
