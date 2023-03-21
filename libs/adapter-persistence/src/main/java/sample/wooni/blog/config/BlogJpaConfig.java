@@ -35,4 +35,11 @@ public class BlogJpaConfig {
         transactionTemplate.setReadOnly(true);
         return transactionTemplate;
     }
+
+    @Bean
+    public TransactionTemplate writeOperation(PlatformTransactionManager transactionManager) {
+        var transactionTemplate = new TransactionTemplate(transactionManager);
+        transactionTemplate.setReadOnly(false);
+        return transactionTemplate;
+    }
 }

@@ -12,6 +12,13 @@ import java.util.stream.Collectors;
 
 @UtilityClass
 public class BlogStatisticsDtoConverter {
+    public static BlogStatisticsDto convert(BlogStatistics target) {
+        if (Objects.isNull(target)) {
+            return null;
+        }
+
+        return BlogStatisticsDtoConverter.convertDto(target);
+    }
     public static List<BlogStatisticsDto> convert(List<BlogStatistics> targets) {
         if (CollectionUtils.isEmpty(targets)) {
             return Lists.newArrayList();
