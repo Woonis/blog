@@ -16,7 +16,6 @@ import static sample.wooni.blog.entity.blog.statistics.QBlogStatistics.blogStati
 
 @Repository
 public class BlogStatisticsCustomRepositoryImpl implements BlogStatisticsCustomRepository {
-    private static final int INT_TEN = 10;
     private final JPAQueryFactory queryFactory;
 
     public BlogStatisticsCustomRepositoryImpl(JPAQueryFactory queryFactory) {
@@ -42,7 +41,7 @@ public class BlogStatisticsCustomRepositoryImpl implements BlogStatisticsCustomR
     }
 
     @Override
-    public List<BlogStatistics> fetchTop10Keyword(BlogSearchType type) {
+    public List<BlogStatistics> fetchTopKeyword(BlogSearchType type, int limit) {
         BooleanBuilder builder = new BooleanBuilder();
 
         if (Objects.nonNull(type) && type.isCreatableType()) {
@@ -53,7 +52,7 @@ public class BlogStatisticsCustomRepositoryImpl implements BlogStatisticsCustomR
                 .selectFrom(blogStatistics)
                 .where(builder)
                 .orderBy(blogStatistics.count.desc(), blogStatistics.id.desc())
-                .limit(INT_TEN)
+                .limit(limit)
                 .fetch();
     }
 }

@@ -18,9 +18,10 @@ public class BlogStatisticsController {
         this.service = service;
     }
 
-    @GetMapping("/api/v1/blog/statistics/top-10-keyword")
-    public ResultResponse<List<BlogStatisticsDto>> top10SearchKeywords(@RequestParam BlogSearchType type) {
-        return ResultResponse.ok(service.top10SearchKeywords(type));
+    @GetMapping("/api/v1/blog/statistics/top-keyword")
+    public ResultResponse<List<BlogStatisticsDto>> topSearchKeywords(@RequestParam(required = false, defaultValue = "ALL") BlogSearchType type,
+                                                                     @RequestParam(required = false, defaultValue = "10") int limit) {
+        return ResultResponse.ok(service.topSearchKeywords(type, limit));
     }
 
     @PostMapping("/api/v1/blog/statistics")

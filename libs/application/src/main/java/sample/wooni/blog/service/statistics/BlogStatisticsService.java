@@ -8,6 +8,6 @@ import sample.wooni.blog.service.statistics.dto.BlogStatisticsDto;
 import java.util.List;
 
 public interface BlogStatisticsService {
-    List<BlogStatisticsDto> top10SearchKeywords(BlogSearchType type);
+    List<BlogStatisticsDto> topSearchKeywords(BlogSearchType type, int limit);
     BlogStatisticsDto save(BlogStatisticsCreateDto createDto);
 }

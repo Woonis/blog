@@ -29,8 +29,8 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
     }
 
     @Override
-    public List<BlogStatisticsDto> top10SearchKeywords(BlogSearchType type) {
-        var response = readOperation.execute( status -> blogStatisticsOutput.fetchTop10Keyword(type));
+    public List<BlogStatisticsDto> topSearchKeywords(BlogSearchType type, int limit) {
+        var response = readOperation.execute( status -> blogStatisticsOutput.fetchTopKeyword(type, limit));
         return BlogStatisticsDtoConverter.convert(response);
     }
 

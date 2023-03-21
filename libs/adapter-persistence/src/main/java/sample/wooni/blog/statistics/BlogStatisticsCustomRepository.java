@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface BlogStatisticsCustomRepository {
     Optional<BlogStatistics> findOneBy(BlogSearchType type, String keyword);
-    List<BlogStatistics> fetchTop10Keyword(BlogSearchType type);
+    List<BlogStatistics> fetchTopKeyword(BlogSearchType type, int limit);
 }
