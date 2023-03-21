@@ -37,7 +37,7 @@ class BlogSearchServiceImplTest extends Specification {
                 .keyword("hello")
                 .type(BlogSearchType.KAKAO)
                 .url(null)
-                .sort(KaKaoSearchSort.NONE)
+                .sort(KaKaoSearchSort.NONE.name())
                 .build()
 
         1 * kaKaoService.isTarget(BlogSearchType.KAKAO) >> true
@@ -72,7 +72,7 @@ class BlogSearchServiceImplTest extends Specification {
                 .keyword("hello")
                 .type(BlogSearchType.ALL)
                 .url(null)
-                .sort(KaKaoSearchSort.NONE)
+                .sort(KaKaoSearchSort.NONE.name())
                 .build()
 
         when:
