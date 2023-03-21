@@ -52,6 +52,8 @@ configureByLabels("java") {
             mavenBom("org.springframework.boot:spring-boot-dependencies:${Versions.springBoot}")
             mavenBom("org.jetbrains.kotlin:kotlin-bom:${Versions.kotlin}")
             mavenBom("com.google.guava:guava-bom:${Versions.guava}")
+
+            // circuit breaker
             mavenBom("org.springframework.cloud:spring-cloud-dependencies:${Versions.springCloud}")
         }
 
@@ -68,6 +70,7 @@ configureByLabels("java") {
         implementation("com.google.guava:guava")
         implementation("org.apache.commons:commons-lang3")
 
+        // circuit breaker
         implementation("org.springframework.boot:spring-boot-starter-aop")
         implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
         implementation("io.github.resilience4j:resilience4j-spring-boot3")

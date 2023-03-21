@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import sample.wooni.blog.service.output.blog.response.BlogPageDto;
 import sample.wooni.blog.service.search.dto.BlogSearchDto;
-import sample.wooni.blog.service.search.dto.BlogSearchPageDto;
 import sample.wooni.blog.service.search.external.ExternalBlogSearchService;
 import sample.wooni.blog.service.statistics.BlogStatisticsService;
 import sample.wooni.blog.service.statistics.dto.BlogStatisticsCreateDto;
