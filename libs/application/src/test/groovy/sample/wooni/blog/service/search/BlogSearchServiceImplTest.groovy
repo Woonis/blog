@@ -3,9 +3,9 @@ package sample.wooni.blog.service.search
 import org.assertj.core.util.Lists
 import sample.wooni.blog.service.common.Pagination
 import sample.wooni.blog.service.kakao.KaKaoService
-import sample.wooni.blog.service.kakao.dto.KaKaoBlogDetailDto
-import sample.wooni.blog.service.kakao.dto.KaKaoBlogPageDto
 import sample.wooni.blog.service.kakao.dto.KaKaoSearchSort
+import sample.wooni.blog.service.output.blog.response.BlogDetailDto
+import sample.wooni.blog.service.output.blog.response.BlogPageDto
 import sample.wooni.blog.service.search.dto.BlogSearchDto
 import sample.wooni.blog.service.search.dto.BlogSearchType
 import sample.wooni.blog.service.statistics.BlogStatisticsService
@@ -41,12 +41,12 @@ class BlogSearchServiceImplTest extends Specification {
                 .build()
 
         1 * kaKaoService.isTarget(BlogSearchType.KAKAO) >> true
-        1 * kaKaoService.search(_, _, _) >> KaKaoBlogPageDto.builder()
+        1 * kaKaoService.search(_, _, _) >> BlogPageDto.builder()
                 .pagination(new Pagination(100, 10, true, 0, 10))
                 .documents(Lists.newArrayList(
-                        KaKaoBlogDetailDto.builder()
+                        BlogDetailDto.builder()
                                 .title("이스트맨하우스 매트리스 매장 고척 가구 <b>123</b>")
-                                .contents("이번 참에 매트리스 교체하고 싶다는 생각이 들어서 또 침대를 사용해볼까 하다가")
+                                .content("이번 참에 매트리스 교체하고 싶다는 생각이 들어서 또 침대를 사용해볼까 하다가")
                                 .url("https://blog.naver.com/mhhan71/222984242889")
                                 .thumbnail("https://search3.kakaocdn.net/argon/130x130_85_c/D0oLzGcglGH")
                                 .createdAt(ZonedDateTime.now())
@@ -56,14 +56,14 @@ class BlogSearchServiceImplTest extends Specification {
         1 * statisticsService.save(_) >> BlogStatisticsDto.builder().build()
 
         when:
-        KaKaoBlogPageDto response = service.search(request, 0, 10)
+        BlogPageDto response = service.search(request, 0, 10)
 
         then:
         noExceptionThrown()
-        response.getPagination() != null
-        response.getDocuments() != null
-        response.getDocuments().size() == 1
-        response.getDocuments().get(0).title() == "이스트맨하우스 매트리스 매장 고척 가구 <b>123</b>"
+        response.pagination() != null
+        response.documents() != null
+        response.documents().size() == 1
+        response.documents().get(0).title() == "이스트맨하우스 매트리스 매장 고척 가구 <b>123</b>"
     }
 
     def "not found target service"() {
