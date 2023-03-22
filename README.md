@@ -66,7 +66,6 @@ Response
         "thumbnail": "",
         "createdAt": "2023-03-16 11:40:12"
       }
-      ..
     ],
     "pagination": {
       "totalPageCount": 800,
@@ -82,7 +81,7 @@ Response
 
 ## 2. 검색어 통계 조회
 ``
-GET /api/v1/blog
+GET /api/v1/blog/statistics/top-keyword
 ``
 
 
